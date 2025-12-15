@@ -1,0 +1,44 @@
+# STM32 Build Artifacts
+stm32-firmware/Debug/
+stm32-firmware/Release/
+stm32-firmware/.settings/
+stm32-firmware/*.elf
+stm32-firmware/*.bin
+stm32-firmware/*.hex
+stm32-firmware/*.map
+stm32-firmware/*.list
+stm32-firmware/*.su
+stm32-firmware/*.d
+stm32-firmware/*.o
+
+# STM32CubeIDE
+.metadata/
+.project
+.cproject
+.mxproject
+
+# ESP8266 Build Artifacts
+esp8266-firmware/*.bin
+esp8266-firmware/*.elf
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# System Files
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Credentials (just in case)
+*credentials*
+*password*
+*secret*
