@@ -28,6 +28,7 @@ This project showcases a complete IoT LED control system combining STM32F407 mic
 - ✅ **Memory Optimized** - 50KB heap, stable operation with watchdog + print task
 
 **ESP8266 Wi-Fi Bridge:**
+- ✅ **mDNS Support** - Access via `esp8266-led.local` instead of IP addresses
 - ✅ **Web Server** - Responsive HTML interface with auto-refresh
 - ✅ **RESTful API** - JSON endpoints for pattern control and status
 - ✅ **Request Tracking** - Circular buffer storing last 10 requests with IP/device info
@@ -57,10 +58,11 @@ This project showcases a complete IoT LED control system combining STM32F407 mic
                                  │ Wi-Fi (2.4 GHz)
                                  ↓
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                      ESP8266 NodeMCU (Wi-Fi Bridge)                     │
+│       ESP8266 NodeMCU (Wi-Fi Bridge) - esp8266-led.local               │
 │  ┌──────────────┐    ┌───────────────┐    ┌────────────────────────┐  │
 │  │  Web Server  │ ←→ │ Request Track │ ←→ │  SoftwareSerial TX/RX │  │
 │  │  (Port 80)   │    │  (10 entries) │    │   (115200 baud)        │  │
+│  │  + mDNS      │    │ + ACK Display │    │                        │  │
 │  └──────────────┘    └───────────────┘    └────────────────────────┘  │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │ UART (LED_CMD:x, PING/PONG)
@@ -181,6 +183,12 @@ Follow wiring diagram above, then power on both boards.
 
 ### 4. Access Web Interface
 
+**Method 1: Using mDNS (Recommended)**
+1. Open browser: `http://esp8266-led.local/`
+2. Click LED pattern buttons
+3. Monitor UART3 for STM32 debug logs
+
+**Method 2: Using IP Address**
 1. Open ESP8266 Serial Monitor (115200 baud)
 2. Find IP address in output: `[WIFI] Connected | IP: 192.168.x.x`
 3. Open browser: `http://192.168.x.x/`

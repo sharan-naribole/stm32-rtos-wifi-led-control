@@ -29,8 +29,8 @@
  * - SoftwareSerial:     LED commands (LED_CMD:) - sent to STM32 only
  *
  * Web Interface:
- * - Homepage:        http://ESP8266_IP/
- * - Pattern control: http://ESP8266_IP/pattern?p=<1-4>
+ * - Homepage:        http://esp8266-led.local/  (or http://ESP8266_IP/)
+ * - Pattern control: http://esp8266-led.local/pattern?p=<1-4>
  *
  * UART Protocol:
  * - Baud rate: 115200
@@ -59,6 +59,7 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 #include <SoftwareSerial.h>
 #include "index.h"  // HTML web interface
 
@@ -196,6 +197,9 @@ void loop() {
   // Handle incoming HTTP requests
   server.handleClient();
 
+  // Update mDNS
+  MDNS.update();
+
   // Process any responses from STM32
   processSTM32Response();
 
@@ -268,6 +272,16 @@ void setupWiFi() {
     Serial.print(WiFi.RSSI());
     Serial.println(" dBm");
     Serial.println("[WIFI] --------------------------------");
+
+    // Start mDNS responder
+    Serial.println("[mDNS] Starting mDNS responder...");
+    if (MDNS.begin("esp8266-led")) {
+      Serial.println("[mDNS] ✓ mDNS responder started");
+      Serial.println("[mDNS] Access at: http://esp8266-led.local/");
+      Serial.println("[mDNS] --------------------------------");
+    } else {
+      Serial.println("[mDNS] ✗ Error starting mDNS responder");
+    }
   } else {
     Serial.println("[WIFI] ✗ Connection Failed!");
     Serial.println("[WIFI] Troubleshooting:");

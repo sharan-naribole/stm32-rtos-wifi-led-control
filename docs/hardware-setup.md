@@ -302,7 +302,7 @@ USB-Serial Adapter                 STM32F407 Discovery
 ### Web Interface
 
 - [ ] ESP8266 connects to Wi-Fi network ✓
-- [ ] Web browser can access ESP8266 IP address ✓
+- [ ] Web browser can access ESP8266 (http://esp8266-led.local/ or IP address) ✓
 - [ ] LED pattern buttons respond (no HTTP errors) ✓
 - [ ] STM32 UART3 shows LED_CMD messages ✓
 - [ ] Web page displays ACK status (OK:Pattern1, etc.) ✓

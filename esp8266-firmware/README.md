@@ -16,6 +16,7 @@ This firmware turns the ESP8266 into a wireless bridge between web clients and a
 ### Key Features
 
 **Web Server:**
+- ✅ **mDNS Support** - Access via `esp8266-led.local` instead of IP addresses
 - ✅ **HTTP Server** - Runs on port 80 with RESTful API endpoints
 - ✅ **Responsive Web UI** - Mobile-friendly interface with auto-refresh (5s interval)
 - ✅ **Pattern Control** - 4 LED patterns selectable via web buttons
@@ -157,6 +158,11 @@ SoftwareSerial: STM32 commands
 [WIFI] Subnet Mask: 255.255.255.0
 [WIFI] Signal:      -42 dBm
 [WIFI] --------------------------------
+
+[mDNS] Starting mDNS responder...
+[mDNS] ✓ mDNS responder started
+[mDNS] Access at: http://esp8266-led.local/
+[mDNS] --------------------------------
 
 [SERVER] Configuring web server...
 [SERVER] Web server started on port 80
